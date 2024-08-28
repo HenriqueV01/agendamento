@@ -19,7 +19,7 @@ export class HomeComponent {
 
   private contatoService = inject(ContatoService)
   public listaContatos: IContato[] = [];
-  public colunas: string[] = ['id','nome','email','celular','telefone','favorito','ativo','data_hora','ações'];
+  public displayedColumns: string[] = ['id','nome','email','celular','telefone','favorito','ativo','data_hora','ações'];
 
   obterContatos(){
     this.contatoService.lista().subscribe({
