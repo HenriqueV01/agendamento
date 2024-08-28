@@ -16,7 +16,7 @@ export class ContatoService {
   constructor() { }
 
   lista(){
-    return this.http.get<IContato>(this.apiUrl);
+    return this.http.get<IContato[]>(this.apiUrl);
   }
 
   buscar(id: number){
@@ -33,7 +33,7 @@ export class ContatoService {
   }
 
   deletar(id: number){
-    return this.http.get<IContato>(`${this.apiUrl}/${id}`);
+    return this.http.delete<ResponseApi>(`${this.apiUrl}/${id}`);
   }
 
 }
