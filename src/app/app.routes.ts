@@ -6,6 +6,7 @@ export const routes: Routes = [
 
   {path:'', component: HomeComponent },
   {path:'inicio', component: HomeComponent },
+  {path:'contato', component: ContatoComponent },
   {path:'contato/:id', component: ContatoComponent }
 
 ];

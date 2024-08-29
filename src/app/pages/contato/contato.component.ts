@@ -4,6 +4,8 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { MatInputModule}  from '@angular/material/input';
 import { MatFormFieldModule}  from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IContato } from '../../shared/models/contato';
@@ -12,7 +14,7 @@ import { IContato } from '../../shared/models/contato';
 @Component({
   selector: 'app-contato',
   standalone: true,
-  imports: [MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatFormFieldModule, MatButtonModule, MatCheckboxModule, ReactiveFormsModule],
   templateUrl: './contato.component.html',
   styleUrl: './contato.component.scss'
 })
@@ -28,24 +30,30 @@ export class ContatoComponent implements OnInit{
     email:[""],
     celular:[""],
     telefone:[""],
-    favorito:[""],
-    ativo:[""],
+    favorito:[false],
+    ativo:[false],
     data_hora:[""],
 
   })
 
   constructor(private router: Router){}
 
+  maskJs(value: string, pattern: string) {
+    let i = 0;
+    const v = value.toString();
+    return pattern.replace(/#/g, () => v[i++] || '');
+ };
+
   ngOnInit(): void {
-    if(this.idContato != 0){
+    if(this.idContato != null){
       this.contatoService.buscar(this.idContato).subscribe({
         next: (contato) => {
           this.formContato.patchValue({
             id: contato.id,
             nome: contato.nome,
             email: contato.email,
-            celular: contato.celular,
-            telefone: contato.telefone,
+            celular: this.maskJs(contato.celular, '(##) #####-####'),
+            telefone: this.maskJs(contato.telefone, '(##) #####-####'),
             favorito: contato.favorito,
             ativo: contato.ativo,
             data_hora: contato.data_hora,
@@ -72,14 +80,16 @@ export class ContatoComponent implements OnInit{
       data_hora: this.formContato.value.data_hora
     }
 
-    if(this.idContato == 0){
+    if(this.idContato == null){
       this.contatoService.criar(contato).subscribe({
-        next: (contato) => {
-          if(contato.isSuccess){
-            this.router.navigate(["/"]);
-          }else{
-            alert("Erro ao criar!")
-          }
+        next: (res) => {
+          this.router.navigate(["/"]);
+          // console.log(res);
+          // if(res){
+          //   this.router.navigate(["/"]);
+          // }else{
+          //   alert("Erro ao criar!")
+          // }
         },
         error:(err)=>{
           console.log(err.message)

@@ -20,19 +20,19 @@ export class ContatoService {
   }
 
   buscar(id: number){
-    return this.http.get<IContato>(`${this.apiUrl}/${id}`);
+    return this.http.get<IContato>(`${this.apiUrl}${id}`);
   }
 
   criar(contato: IContato){
-    return this.http.post<ResponseApi>(this.apiUrl, contato);
+    return this.http.post<IContato>(this.apiUrl, contato);
   }
 
   editar(contato: IContato){
-    return this.http.put<ResponseApi>(this.apiUrl, contato);
+    return this.http.put<ResponseApi>(`${this.apiUrl}${contato.id}`, contato);
   }
 
   deletar(id: number){
-    return this.http.delete<ResponseApi>(`${this.apiUrl}/${id}`);
+    return this.http.delete<ResponseApi>(`${this.apiUrl}${id}`);
   }
 
 }
