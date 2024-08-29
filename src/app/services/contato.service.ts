@@ -11,7 +11,7 @@ import { ResponseApi } from '../models/responseApi';
 export class ContatoService {
 
   private http = inject(HttpClient);
-  private apiUrl: string = appsettings.apiUrl + "contatos";
+  private apiUrl: string = appsettings.apiUrl + "contatos/";
 
   constructor() { }
 

@@ -6,14 +6,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { IContato } from '../../models/contato';
 import { Router } from '@angular/router';
+import { LocalDateTimePipe } from '../../shared/pipe/local-date-time.pipe';
+import { BooleanStringPipe } from '../../shared/pipe/boolean-string.pipe';
+import { FonePipe } from '../../shared/pipe/fone.pipe';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatCardModule, MatTableModule, MatIconModule, MatButtonModule],
+  imports: [MatCardModule, MatTableModule, MatIconModule, MatButtonModule, LocalDateTimePipe, BooleanStringPipe, FonePipe],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
 
@@ -34,10 +37,12 @@ export class HomeComponent {
     })
   }
 
-  constructor(private router: Router){}
+  constructor(private router: Router){
+    this.obterContatos();
+  }
 
   novo(){
-    this.router.navigate(['/contato',0]);
+    this.router.navigate(['/contato']);
   }
 
   editar(contato: IContato){
