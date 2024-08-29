@@ -1,1 +1,46 @@
-<p>contato works!</p>
+<div class="mat-elevation-z2" style="width: 30%; padding: 30px; margin: 50px auto; display: flex; justify-content: center;">
+<form [formGroup]="formContato">
+  <div class="flex">
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome">
+    </mat-form-field>
+  </div>
+  <div class="flex">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+  </div>
+  <div class="flex">
+    <mat-form-field>
+      <mat-label>Celular</mat-label>
+      <input matInput formControlName="celular">
+    </mat-form-field>
+  </div>
+  <div class="flex">
+    <mat-form-field>
+      <mat-label>Telefone</mat-label>
+      <input matInput formControlName="telefone">
+    </mat-form-field>
+  </div>
+  <div class="flex">
+    <mat-form-field>
+      <mat-label>Favorito</mat-label>
+      <input matInput formControlName="favorito">
+    </mat-form-field>
+  </div>
+  <div class="flex">
+    <mat-form-field>
+      <mat-label>Ativo</mat-label>
+      <input matInput formControlName="ativo">
+    </mat-form-field>
+  </div>
+
+  <div class="flex">
+    <button mat-flat-button color="primary" (click)="guardar()">Salvar</button>
+    <button mat-flat-button color="warn" (click)="voltar()" style="margin-left: 8px;">Voltar</button>
+  </div>
+
+</form>
+</div>

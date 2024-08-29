@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { IContato } from '../../models/contato';
+import { IContato } from '../../shared/models/contato';
 import { Router } from '@angular/router';
 import { LocalDateTimePipe } from '../../shared/pipe/local-date-time.pipe';
 import { BooleanStringPipe } from '../../shared/pipe/boolean-string.pipe';
@@ -25,7 +25,7 @@ export class HomeComponent {
   public displayedColumns: string[] = ['id','nome','email','celular','telefone','favorito','ativo','data_hora','ações'];
 
   obterContatos(){
-    this.contatoService.lista().subscribe({
+    this.contatoService.listar().subscribe({
       next:(data)=>{
         if(data.length > 0){
           this.listaContatos = data;

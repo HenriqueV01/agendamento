@@ -1,14 +1,11 @@
 <mat-card style="width: 90%; margin: 50px auto">
   <mat-card-header style="justify-content: center;">
-    <mat-card-title>Lista de Contatos:</mat-card-title>
+    <mat-card-title>Lista de Contatos</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <button mat-flat-button color="primary" (click)="novo()">Cadastrar</button>
 
     <table mat-table [dataSource]="listaContatos" class="mat-elevation-z2" style="margin-top: 20px;">
-
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
 
       <!-- Position Column -->
       <ng-container matColumnDef="id">
@@ -60,7 +57,7 @@
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="ações">
-        <th mat-header-cell *matHeaderCellDef></th>
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let contato">
           <button mat-icon-button color="primary" (click)="editar(contato)">
             <mat-icon>edit</mat-icon>

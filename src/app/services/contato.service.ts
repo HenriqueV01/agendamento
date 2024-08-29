@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { appsettings } from '../settings/appsettings';
-import { IContato } from '../models/contato';
-import { ResponseApi } from '../models/responseApi';
+import { IContato } from '../shared/models/contato';
+import { ResponseApi } from '../shared/models/responseApi';
 
 
 @Injectable({
@@ -15,7 +15,7 @@ export class ContatoService {
 
   constructor() { }
 
-  lista(){
+  listar(){
     return this.http.get<IContato[]>(this.apiUrl);
   }
 
@@ -23,13 +23,12 @@ export class ContatoService {
     return this.http.get<IContato>(`${this.apiUrl}/${id}`);
   }
 
-
-  criar(){
-    return this.http.post<ResponseApi>(this.apiUrl,Object);
+  criar(contato: IContato){
+    return this.http.post<ResponseApi>(this.apiUrl, contato);
   }
 
-  editar(){
-    return this.http.put<ResponseApi>(this.apiUrl,Object);
+  editar(contato: IContato){
+    return this.http.put<ResponseApi>(this.apiUrl, contato);
   }
 
   deletar(id: number){
