@@ -1,5 +1,5 @@
 import { ContatoService } from './../../services/contato.service';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, Pipe } from '@angular/core';
 
 import { MatInputModule}  from '@angular/material/input';
 import { MatFormFieldModule}  from '@angular/material/form-field';
@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IContato } from '../../shared/models/contato';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -46,6 +47,7 @@ export class ContatoComponent implements OnInit{
 
   ngOnInit(): void {
     if(this.idContato != null){
+      console.log("Contato cadastro");
       this.contatoService.buscar(this.idContato).subscribe({
         next: (contato) => {
           this.formContato.patchValue({
@@ -80,35 +82,43 @@ export class ContatoComponent implements OnInit{
       data_hora: this.formContato.value.data_hora
     }
 
-    if(this.idContato == null){
+    if (this.idContato === undefined) {
       this.contatoService.criar(contato).subscribe({
         next: (res) => {
-          this.router.navigate(["/"]);
-          // console.log(res);
-          // if(res){
-          //   this.router.navigate(["/"]);
-          // }else{
-          //   alert("Erro ao criar!")
-          // }
-        },
-        error:(err)=>{
-          console.log(err.message)
-        }
-      })
-
-    }else{
-      this.contatoService.editar(contato).subscribe({
-        next: (contato) => {
-          if(contato.isSuccess){
+          if (res) {
             this.router.navigate(["/"]);
-          }else{
-            alert("Erro ao editar!")
+          }
+        },
+        error: (err) => {
+          console.error('Erro ao criar contato', err);
+          alert('Ocorreu um erro ao criar o contato. Tente novamente.');
+        }
+      });
+    }else{
+      console.log("update");
+
+      // this.contatoService.update(contato).pipe(
+      //   map( res => {
+      //     console.log(res);
+      //     if (res) {
+      //       this.router.navigate(["/"]);
+      //     }} )
+      // )
+
+      console.log("Entrou aqui");
+      this.contatoService.editar(contato).subscribe({
+        next: (res) => {
+          if(res){
+            this.router.navigate(["/"]);
           }
         },
         error:(err)=>{
-          console.log(err.message)
+          // console.error(err.message)
+          console.error('Erro detalhado:', err.error);
+          alert('Ocorreu um erro ao editar o contato. Tente novamente.');
         }
       })
+
     }
   }
 

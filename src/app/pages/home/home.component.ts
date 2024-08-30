@@ -52,8 +52,9 @@ export class HomeComponent {
   deletar(contato: IContato){
     if(confirm("Deseja deletar o contato: " + contato.nome)){
       this.contatoService.deletar(contato.id).subscribe({
-        next:(data)=>{
-          if(data.isSuccess){
+        next:(res)=>{
+          console.log(res);
+          if(res!=null){
             this.obterContatos();
           }else{
             alert("Não é possível deletar!")

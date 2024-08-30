@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { appsettings } from '../settings/appsettings';
 import { IContato } from '../shared/models/contato';
 import { ResponseApi } from '../shared/models/responseApi';
+import { map, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -24,11 +25,15 @@ export class ContatoService {
   }
 
   criar(contato: IContato){
-    return this.http.post<IContato>(this.apiUrl, contato);
+    return this.http.post<ResponseApi>(this.apiUrl, contato);
   }
 
   editar(contato: IContato){
     return this.http.put<ResponseApi>(`${this.apiUrl}${contato.id}`, contato);
+  }
+
+  public update(contato: IContato):Observable<any>{
+    return this.http.put<any>( `${this.apiUrl}${contato.id}`, contato );
   }
 
   deletar(id: number){

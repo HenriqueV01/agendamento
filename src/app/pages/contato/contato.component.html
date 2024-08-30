@@ -1,4 +1,4 @@
-<div class="mat-elevation-z2" style="width: 30%; padding: 30px; margin: 50px auto; display: flex; justify-content: center;">
+<div class="mat-elevation-z2" style="width: 30%; padding: 30px; margin: 50px auto; display: flex; justify-content: center; background-color: white;">
 
 <form [formGroup]="formContato">
   <div style="display: flex; justify-content: center; font-size: 20px; margin-bottom: 10px;">Contato</div>
@@ -26,19 +26,6 @@
       <input matInput formControlName="telefone">
     </mat-form-field>
   </div>
-  <!-- <div class="flex">
-    <mat-form-field>
-      <mat-label>Favorito</mat-label>
-
-      <input matInput formControlName="favorito">
-    </mat-form-field>
-  </div> -->
-  <!-- <div class="flex">
-    <mat-form-field>
-      <mat-label>Ativo</mat-label>
-      <input matInput formControlName="ativo">
-    </mat-form-field>
-  </div> -->
   <mat-checkbox color="primary" formControlName="favorito">Favorito</mat-checkbox><br>
   <mat-checkbox color="primary" formControlName="ativo" style="margin-bottom: 10px;">Ativo</mat-checkbox>
 
