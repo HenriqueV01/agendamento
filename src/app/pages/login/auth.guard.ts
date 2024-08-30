@@ -19,11 +19,10 @@ export class AuthGuard implements CanActivate {
 
 
   private verificarAcesso(): boolean | UrlTree {
-    console.log("verificarAcesso");
     if (this.authService.usuarioEstaAutenticado()) {
       return true;
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
       return false;
     }
   }

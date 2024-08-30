@@ -7,7 +7,7 @@ import { ILogin } from '../../shared/models/login';
 })
 export class AuthService {
 
-  private usuarioAutenticado: boolean = true;
+  private usuarioAutenticado: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -18,7 +18,7 @@ export class AuthService {
       this.usuarioAutenticado = true;
       this.router.navigate(['/']);
     }else{
-      this.usuarioAutenticado = true;
+      this.usuarioAutenticado = false;
       alert("Login Inválido!");
     }
   }
