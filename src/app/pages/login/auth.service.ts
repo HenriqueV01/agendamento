@@ -19,6 +19,7 @@ export class AuthService {
       this.router.navigate(['/']);
     }else{
       this.usuarioAutenticado = false;
+      alert("Login Inválido!");
     }
   }
 

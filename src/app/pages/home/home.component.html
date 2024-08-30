@@ -7,7 +7,7 @@
   <mat-card-content>
     <button mat-flat-button color="primary" (click)="novo()">Cadastrar</button>
 
-    <table mat-table [dataSource]="listaContatos" class="mat-elevation-z2" style="margin-top: 20px;">
+    <table mat-table [dataSource]="getContatos" class="mat-elevation-z2" style="margin-top: 20px;">
 
       <!-- Position Column -->
       <ng-container matColumnDef="id">

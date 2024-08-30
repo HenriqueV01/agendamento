@@ -22,14 +22,20 @@ import { HomeSearchComponent } from './home-search/home-search.component';
 export class HomeComponent {
 
   private contatoService = inject(ContatoService)
-  public listaContatos: IContato[] = [];
+  // public listaContatos: IContato[] = [];
+
+  public getContatos: any;
+  public setContatos: any;
+
   public displayedColumns: string[] = ['id','nome','email','celular','telefone','favorito','ativo','data_hora','ações'];
 
   obterContatos(){
     this.contatoService.listar().subscribe({
       next:(data)=>{
         if(data.length > 0){
-          this.listaContatos = data;
+
+          this.setContatos = data;
+          this.getContatos = this.setContatos;
         }
       },
       error:(err)=>{
@@ -69,13 +75,18 @@ export class HomeComponent {
   }
 
   public getSearch(value: string){
-    const filter = this.listaContatos.filter(
-      (res: any) => {
-        return !res.name.indexOf(value.toLowerCase());
+    console.log("getSearch ->" + value);
+    const filter = this.setContatos.filter(
+      (res: IContato) => {
+        return res.nome.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+
       }
     );
 
-    this.listaContatos = filter;
+    console.log("getSearch ->" + filter);
+
+    this.getContatos = filter;
+
   }
 
 
