@@ -47,7 +47,6 @@ export class ContatoComponent implements OnInit{
 
   ngOnInit(): void {
     if(this.idContato != null){
-      console.log("Contato cadastro");
       this.contatoService.buscar(this.idContato).subscribe({
         next: (contato) => {
           this.formContato.patchValue({
@@ -105,7 +104,6 @@ export class ContatoComponent implements OnInit{
       //     }} )
       // )
 
-      console.log("Entrou aqui");
       this.contatoService.editar(contato).subscribe({
         next: (res) => {
           if(res){
