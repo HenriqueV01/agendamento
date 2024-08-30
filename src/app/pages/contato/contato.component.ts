@@ -28,10 +28,10 @@ export class ContatoComponent implements OnInit{
 
   public formContato: FormGroup = this.formBuilder.group({
     id:[0],
-    nome:["", Validators.required],
-    email:["", Validators.required, Validators.email],
-    celular:["", Validators.required],
-    telefone:["", Validators.required],
+    nome:[""],
+    email:[""],
+    celular:[""],
+    telefone:[""],
     favorito:[false],
     ativo:[false],
     data_hora:[""],
@@ -135,13 +135,13 @@ export class ContatoComponent implements OnInit{
 
 
     verificaNomeTouched(){
-      return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
+      return !this.formContato.get('nome')?.value && !!this.formContato.get('nome')?.touched;
     }
 
     verificaNomeInvalido(){
-      let campoEmail = this.formContato.get('email');
+      let campoEmail = this.formContato.get('nome');
       if(campoEmail?.errors)
-        return campoEmail.errors['email'];
+        return campoEmail.errors['nome'];
     }
 
     verificaEmailTouched(){
@@ -155,23 +155,23 @@ export class ContatoComponent implements OnInit{
     }
 
     verificaCelularTouched(){
-      return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
+      return !this.formContato.get('celular')?.value && !!this.formContato.get('celular')?.touched;
     }
 
     verificaCelularInvalido(){
-      let campoEmail = this.formContato.get('email');
+      let campoEmail = this.formContato.get('celular');
       if(campoEmail?.errors)
-        return campoEmail.errors['email'];
+        return campoEmail.errors['celular'];
     }
 
     verificaTelefoneTouched(){
-      return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
+      return !this.formContato.get('telefone')?.value && !!this.formContato.get('telefone')?.touched;
     }
 
     verificaTelefoneInvalido(){
-      let campoEmail = this.formContato.get('email');
+      let campoEmail = this.formContato.get('telefone');
       if(campoEmail?.errors)
-        return campoEmail.errors['email'];
+        return campoEmail.errors['telefone'];
     }
 
 

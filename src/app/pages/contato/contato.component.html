@@ -6,8 +6,8 @@
     <mat-form-field>
       <mat-label>Nome</mat-label>
       <input matInput formControlName="nome">
-      <app-campo-control-erro [mostrarErro]="verificaNomeTouched()" msgErro="E-mail é obrigatório"></app-campo-control-erro>
-      <app-campo-control-erro [mostrarErro]="verificaNomeInvalido()" msgErro="E-mail inválido"></app-campo-control-erro>
+      <app-campo-control-erro [mostrarErro]="verificaNomeTouched()" msgErro="Nome é obrigatório"></app-campo-control-erro>
+      <app-campo-control-erro [mostrarErro]="verificaNomeInvalido()" msgErro="Nome inválido"></app-campo-control-erro>
     </mat-form-field>
   </div>
   <div class="flex">
@@ -21,17 +21,17 @@
   <div class="flex">
     <mat-form-field>
       <mat-label>Celular</mat-label>
-      <input type="number" matInput formControlName="celular">
-      <app-campo-control-erro [mostrarErro]="verificaCelularTouched()" msgErro="E-mail é obrigatório"></app-campo-control-erro>
-      <app-campo-control-erro [mostrarErro]="verificaCelularInvalido()" msgErro="E-mail inválido"></app-campo-control-erro>
+      <input matInput formControlName="celular">
+      <app-campo-control-erro [mostrarErro]="verificaCelularTouched()" msgErro="Celular é obrigatório"></app-campo-control-erro>
+      <app-campo-control-erro [mostrarErro]="verificaCelularInvalido()" msgErro="Celular inválido"></app-campo-control-erro>
     </mat-form-field>
   </div>
   <div class="flex">
     <mat-form-field>
       <mat-label>Telefone</mat-label>
-      <input type="number" matInput formControlName="telefone">
-      <app-campo-control-erro [mostrarErro]="verificaTelefoneTouched()" msgErro="E-mail é obrigatório"></app-campo-control-erro>
-      <app-campo-control-erro [mostrarErro]="verificaTelefoneInvalido()" msgErro="E-mail inválido"></app-campo-control-erro>
+      <input matInput formControlName="telefone">
+      <app-campo-control-erro [mostrarErro]="verificaTelefoneTouched()" msgErro="Telefone é obrigatório"></app-campo-control-erro>
+      <app-campo-control-erro [mostrarErro]="verificaTelefoneInvalido()" msgErro="Telefone inválido"></app-campo-control-erro>
     </mat-form-field>
   </div>
   <mat-checkbox color="primary" formControlName="favorito">Favorito</mat-checkbox><br>
