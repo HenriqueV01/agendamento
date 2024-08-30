@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
 import { LocalDateTimePipe } from '../../shared/pipe/local-date-time.pipe';
 import { BooleanStringPipe } from '../../shared/pipe/boolean-string.pipe';
 import { FonePipe } from '../../shared/pipe/fone.pipe';
+import { HomeSearchComponent } from './home-search/home-search.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatCardModule, MatTableModule, MatIconModule, MatButtonModule, LocalDateTimePipe, BooleanStringPipe, FonePipe],
+  imports: [MatCardModule, MatTableModule, MatIconModule, MatButtonModule, LocalDateTimePipe, BooleanStringPipe, FonePipe, HomeSearchComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -65,6 +66,16 @@ export class HomeComponent {
       }
       })
     }
+  }
+
+  public getSearch(value: string){
+    const filter = this.listaContatos.filter(
+      (res: any) => {
+        return !res.name.indexOf(value.toLowerCase());
+      }
+    );
+
+    this.listaContatos = filter;
   }
 
 

@@ -133,8 +133,18 @@ export class ContatoComponent implements OnInit{
     this.formContato.reset();
     }
 
+
+    verificaNomeTouched(){
+      return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
+    }
+
+    verificaNomeInvalido(){
+      let campoEmail = this.formContato.get('email');
+      if(campoEmail?.errors)
+        return campoEmail.errors['email'];
+    }
+
     verificaEmailTouched(){
-      // this.formulario.controls[campo];
       return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
     }
 
@@ -144,22 +154,33 @@ export class ContatoComponent implements OnInit{
         return campoEmail.errors['email'];
     }
 
-    verificaValidTouched(campo: any){
-      // this.formulario.controls[campo];
-      return !this.formContato.get(campo)?.valid && !!this.formContato.get(campo)?.touched;
+    verificaCelularTouched(){
+      return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
     }
 
-    aplicaCSSTextoVermelho(campo: any){
-      return {
-        'textoErro': this.verificaValidTouched(campo)
-      }
+    verificaCelularInvalido(){
+      let campoEmail = this.formContato.get('email');
+      if(campoEmail?.errors)
+        return campoEmail.errors['email'];
     }
 
-    aplicaCSSInvalido(campo: any){
-      return {
-        'is-invalid': this.verificaValidTouched(campo)
-      }
+    verificaTelefoneTouched(){
+      return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
     }
+
+    verificaTelefoneInvalido(){
+      let campoEmail = this.formContato.get('email');
+      if(campoEmail?.errors)
+        return campoEmail.errors['email'];
+    }
+
+
+
+
+
+
+
+
 
 
 
