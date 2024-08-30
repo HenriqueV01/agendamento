@@ -38,7 +38,7 @@
   <mat-checkbox color="primary" formControlName="ativo" style="margin-bottom: 10px;">Ativo</mat-checkbox>
 
   <div class="flex">
-    <button mat-flat-button color="primary" (click)="guardar()">Salvar</button>
+    <button mat-flat-button color="primary" [disabled]="invalidSubmit" (click)="guardar()">Salvar</button>
     <button mat-flat-button color="warn" (click)="voltar()" style="margin-left: 8px;">Voltar</button>
   </div>
 

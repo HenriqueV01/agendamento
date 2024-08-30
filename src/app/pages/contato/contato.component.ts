@@ -26,6 +26,17 @@ export class ContatoComponent implements OnInit{
   private contatoService= inject(ContatoService);
   public formBuilder = inject(FormBuilder);
 
+  nome: boolean = false;
+  email: boolean = false;
+  celular: boolean = false;
+  telefone: boolean = false;
+
+  invalidSubmit: boolean = (this.nome
+    && this.email
+    && this.celular
+    && this.telefone
+  )
+
   public formContato: FormGroup = this.formBuilder.group({
     id:[0],
     nome:[""],
@@ -135,7 +146,8 @@ export class ContatoComponent implements OnInit{
 
 
     verificaNomeTouched(){
-      return !this.formContato.get('nome')?.value && !!this.formContato.get('nome')?.touched;
+      this.invalidSubmit = !this.formContato.get('nome')?.value && !!this.formContato.get('nome')?.touched;
+      return this.nome;
     }
 
     verificaNomeInvalido(){
@@ -145,7 +157,8 @@ export class ContatoComponent implements OnInit{
     }
 
     verificaEmailTouched(){
-      return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
+      this.invalidSubmit = !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
+      return this.email;
     }
 
     verificaEmailInvalido(){
@@ -155,7 +168,8 @@ export class ContatoComponent implements OnInit{
     }
 
     verificaCelularTouched(){
-      return !this.formContato.get('celular')?.value && !!this.formContato.get('celular')?.touched;
+      this.invalidSubmit = !this.formContato.get('celular')?.value && !!this.formContato.get('celular')?.touched;
+      return this.celular;
     }
 
     verificaCelularInvalido(){
@@ -165,7 +179,8 @@ export class ContatoComponent implements OnInit{
     }
 
     verificaTelefoneTouched(){
-      return !this.formContato.get('telefone')?.value && !!this.formContato.get('telefone')?.touched;
+      this.invalidSubmit = !this.formContato.get('telefone')?.value && !!this.formContato.get('telefone')?.touched;
+      return this.telefone;
     }
 
     verificaTelefoneInvalido(){
