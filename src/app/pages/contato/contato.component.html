@@ -12,6 +12,8 @@
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput formControlName="email">
+      <app-campo-control-erro [mostrarErro]="verificaEmailTouched()" msgErro="E-mail é obrigatório"></app-campo-control-erro>
+      <app-campo-control-erro [mostrarErro]="verificaEmailInvalido()" msgErro="E-mail inválido"></app-campo-control-erro>
     </mat-form-field>
   </div>
   <div class="flex">

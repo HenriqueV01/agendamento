@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Login } from '../../shared/models/login';
+import { ILogin } from '../../shared/models/login';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,9 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  fazerLogin(login: Login){
+  fazerLogin(login: ILogin){
+    console.log(login);
+
     if(login.nome === 'usuario@email.com' && login.senha ==='123456'){
       this.usuarioAutenticado = true;
       this.router.navigate(['/']);

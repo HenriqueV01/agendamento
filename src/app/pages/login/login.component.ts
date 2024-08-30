@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Login } from '../../shared/models/login';
+import { ILogin } from '../../shared/models/login';
 import { AuthService } from './auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class LoginComponent {
 
-  login: Login = new Login();
   public formBuilder = inject(FormBuilder);
 
   constructor(private authService: AuthService){
@@ -29,7 +28,13 @@ export class LoginComponent {
   })
 
   fazerLogin() {
-    this.authService.fazerLogin(this.login);
+    console.log("fazerLogin");
+    const login: ILogin = {
+      nome: this.formLogin.value.nome,
+      senha: this.formLogin.value.senha,
+
+    }
+    this.authService.fazerLogin(login);
   }
 
 }

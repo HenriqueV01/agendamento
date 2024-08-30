@@ -6,16 +6,17 @@ import { MatFormFieldModule}  from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IContato } from '../../shared/models/contato';
 import { map } from 'rxjs';
+import { CampoControlErroComponent } from './campo-control-erro/campo-control-erro.component';
 
 
 @Component({
   selector: 'app-contato',
   standalone: true,
-  imports: [MatInputModule, MatFormFieldModule, MatButtonModule, MatCheckboxModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatFormFieldModule, MatButtonModule, MatCheckboxModule, ReactiveFormsModule, CampoControlErroComponent],
   templateUrl: './contato.component.html',
   styleUrl: './contato.component.scss'
 })
@@ -27,10 +28,10 @@ export class ContatoComponent implements OnInit{
 
   public formContato: FormGroup = this.formBuilder.group({
     id:[0],
-    nome:[""],
-    email:[""],
-    celular:[""],
-    telefone:[""],
+    nome:["", Validators.required],
+    email:["", Validators.required, Validators.email],
+    celular:["", Validators.required],
+    telefone:["", Validators.required],
     favorito:[false],
     ativo:[false],
     data_hora:[""],
@@ -82,9 +83,13 @@ export class ContatoComponent implements OnInit{
     }
 
     if (this.idContato === undefined) {
+
       this.contatoService.criar(contato).subscribe({
         next: (res) => {
           if (res) {
+
+            console.log(res);
+
             this.router.navigate(["/"]);
           }
         },
@@ -123,6 +128,38 @@ export class ContatoComponent implements OnInit{
   voltar(){
     this.router.navigate(["/"]);
   }
+
+  resetar() {
+    this.formContato.reset();
+    }
+
+    verificaEmailTouched(){
+      // this.formulario.controls[campo];
+      return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
+    }
+
+    verificaEmailInvalido(){
+      let campoEmail = this.formContato.get('email');
+      if(campoEmail?.errors)
+        return campoEmail.errors['email'];
+    }
+
+    verificaValidTouched(campo: any){
+      // this.formulario.controls[campo];
+      return !this.formContato.get(campo)?.valid && !!this.formContato.get(campo)?.touched;
+    }
+
+    aplicaCSSTextoVermelho(campo: any){
+      return {
+        'textoErro': this.verificaValidTouched(campo)
+      }
+    }
+
+    aplicaCSSInvalido(campo: any){
+      return {
+        'is-invalid': this.verificaValidTouched(campo)
+      }
+    }
 
 
 

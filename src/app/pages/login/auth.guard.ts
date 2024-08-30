@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../login/auth.service';
 
@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate {
 
 
   private verificarAcesso(): boolean | UrlTree {
+    console.log("verificarAcesso");
     if (this.authService.usuarioEstaAutenticado()) {
       return true;
     } else {

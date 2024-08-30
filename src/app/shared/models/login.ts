@@ -1,4 +1,4 @@
-export class Login{
-  nome!: string;
-  senha!: string;
+export interface ILogin{
+  nome: string;
+  senha: string;
 }
