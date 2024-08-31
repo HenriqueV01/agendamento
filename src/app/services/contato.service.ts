@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { appsettings } from '../settings/appsettings';
 import { IContato } from '../shared/models/contato';
@@ -28,8 +28,9 @@ export class ContatoService {
     return this.http.post<ResponseApi>(this.apiUrl, contato);
   }
 
-  editar(contato: IContato){
-    return this.http.put<ResponseApi>(`${this.apiUrl}${contato.id}`, contato);
+  editar(contato: IContato):Observable<IContato>{
+    console.log('editar')
+    return this.http.put<IContato>(`${this.apiUrl}${contato.id}`, contato);
   }
 
   public update(contato: IContato):Observable<any>{

@@ -26,16 +26,7 @@ export class ContatoComponent implements OnInit{
   private contatoService= inject(ContatoService);
   public formBuilder = inject(FormBuilder);
 
-  nome: boolean = false;
-  email: boolean = false;
-  celular: boolean = false;
-  telefone: boolean = false;
-
-  invalidSubmit: boolean = (this.nome
-    && this.email
-    && this.celular
-    && this.telefone
-  )
+  invalidSubmit: boolean = true;
 
   public formContato: FormGroup = this.formBuilder.group({
     id:[0],
@@ -122,6 +113,7 @@ export class ContatoComponent implements OnInit{
 
       this.contatoService.editar(contato).subscribe({
         next: (res) => {
+          console.log("Aqui->"+res);
           if(res){
             this.router.navigate(["/"]);
           }
@@ -147,7 +139,7 @@ export class ContatoComponent implements OnInit{
 
     verificaNomeTouched(){
       this.invalidSubmit = !this.formContato.get('nome')?.value && !!this.formContato.get('nome')?.touched;
-      return this.nome;
+      return this.invalidSubmit;
     }
 
     verificaNomeInvalido(){
@@ -157,8 +149,7 @@ export class ContatoComponent implements OnInit{
     }
 
     verificaEmailTouched(){
-      this.invalidSubmit = !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
-      return this.email;
+      return !this.formContato.get('email')?.value && !!this.formContato.get('email')?.touched;
     }
 
     verificaEmailInvalido(){
@@ -168,8 +159,7 @@ export class ContatoComponent implements OnInit{
     }
 
     verificaCelularTouched(){
-      this.invalidSubmit = !this.formContato.get('celular')?.value && !!this.formContato.get('celular')?.touched;
-      return this.celular;
+      return !this.formContato.get('celular')?.value && !!this.formContato.get('celular')?.touched;
     }
 
     verificaCelularInvalido(){
@@ -179,8 +169,7 @@ export class ContatoComponent implements OnInit{
     }
 
     verificaTelefoneTouched(){
-      this.invalidSubmit = !this.formContato.get('telefone')?.value && !!this.formContato.get('telefone')?.touched;
-      return this.telefone;
+      return !this.formContato.get('telefone')?.value && !!this.formContato.get('telefone')?.touched;
     }
 
     verificaTelefoneInvalido(){
