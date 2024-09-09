@@ -12,11 +12,12 @@ import { map, Observable } from 'rxjs';
 export class ContatoService {
 
   private http = inject(HttpClient);
-  private apiUrl: string = appsettings.apiUrl + "contatos/";
+  private apiUrl: string = appsettings.apiUrl + "api/contatos/";
 
   constructor() { }
 
   listar(){
+
     return this.http.get<IContato[]>(this.apiUrl);
   }
 
@@ -24,8 +25,14 @@ export class ContatoService {
     return this.http.get<IContato>(`${this.apiUrl}${id}`);
   }
 
-  criar(contato: IContato){
-    return this.http.post<ResponseApi>(this.apiUrl, contato);
+  criar(contato: IContato, token: string){
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<ResponseApi>(this.apiUrl, contato, { headers });
   }
 
   editar(contato: IContato):Observable<IContato>{

@@ -8,6 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes, withComponentInputBinding()),
     provideAnimationsAsync(),
-    importProvidersFrom(HttpClientModule),
+    importProvidersFrom(HttpClientModule), provideAnimationsAsync(),
   ]
 };

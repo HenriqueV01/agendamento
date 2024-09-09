@@ -30,8 +30,8 @@ export class LoginComponent {
   fazerLogin() {
     console.log("fazerLogin");
     const login: ILogin = {
-      nome: this.formLogin.value.nome,
-      senha: this.formLogin.value.senha,
+      login: this.formLogin.value.nome,
+      password: this.formLogin.value.senha,
 
     }
     this.authService.fazerLogin(login);
