@@ -26,8 +26,6 @@ export class ContatoComponent implements OnInit{
   private contatoService= inject(ContatoService);
   public formBuilder = inject(FormBuilder);
 
-  private token!: string;
-
   invalidSubmit: boolean = true;
 
   public formContato: FormGroup = this.formBuilder.group({
@@ -88,7 +86,7 @@ export class ContatoComponent implements OnInit{
 
     if (this.idContato === undefined) {
 
-      this.contatoService.criar(contato, this.token).subscribe({
+      this.contatoService.criar(contato).subscribe({
         next: (res) => {
           if (res) {
 

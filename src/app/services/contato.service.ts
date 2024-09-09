@@ -25,14 +25,15 @@ export class ContatoService {
     return this.http.get<IContato>(`${this.apiUrl}${id}`);
   }
 
-  criar(contato: IContato, token: string){
+  criar(contato: IContato){
 
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
-    });
+    // const headers = new HttpHeaders({
+    //   'Authorization': 'Bearer ' + token,
+    //   'Content-Type': 'application/json'
+    // });
+    //return this.http.post<ResponseApi>(this.apiUrl, contato, { headers });
 
-    return this.http.post<ResponseApi>(this.apiUrl, contato, { headers });
+    return this.http.post<ResponseApi>(this.apiUrl, contato);
   }
 
   editar(contato: IContato):Observable<IContato>{
