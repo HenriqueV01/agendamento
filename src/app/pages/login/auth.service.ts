@@ -19,7 +19,8 @@ export class AuthService {
   constructor(private router: Router) { }
 
   fazerLogin(login: ILogin){
-    console.log("login");
+    console.log("login "+login.login + " - " + login.password);
+    localStorage.clear();
     return this.http.post<string>(this.apiUrl, login).subscribe({
       next: (res: any) =>{
        // debugger;
